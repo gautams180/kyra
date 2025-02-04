@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/kyra-api",
+        "destination": "https://saas.kyra.com"
+      }
+    ]
+}
