@@ -19,6 +19,8 @@ const tabs = [
   "Lookalikes",
 ];
 
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export const Home: React.FC<HomeProps> = () => {
   const [profileData, setProfileData] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
@@ -31,14 +33,11 @@ export const Home: React.FC<HomeProps> = () => {
       const headers = {
         headers: {
           "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a",
-          Origin: "https://kyra-lemon.vercel.app/", 
-          Referer: "https://kyra-lemon.vercel.app/",
         },
-        withCredentials: true,
       };
 
       try {
-        const API_BASE_URL = "/api/discovery/creators/5831967";
+        const API_BASE_URL =  `${BASE_URL}/discovery/creators/5831967` ;
 
         const [baseDataRes, statsHistoryRes] = await Promise.all([
           axios.get(`${API_BASE_URL}/base-data`, headers),
