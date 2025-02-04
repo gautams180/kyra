@@ -11,7 +11,7 @@ export const TabSection: React.FC<TabProps> = ({
 }) => {
   return (
     <nav className=" w-full bg-black text-white px-6 border-b border-gray">
-      <div className="w-5/12 lg:w-6/12 flex lg:flex-row gap-5 justify-between mx-auto overflow-x-scroll [&::-webkit-scrollbar]:hidden px-5">
+      <div className="w-full lg:w-6/12 flex lg:flex-row gap-5 justify-between mx-auto overflow-x-scroll [&::-webkit-scrollbar]:hidden px-5">
         {tabs.map((tab) => (
           <div
             key={tab}
