@@ -19,6 +19,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --rhm-rect: #2d2d2e;
+}
+
+#root {
+  width: 100%;
 }
 
 a {
@@ -75,3 +80,27 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  /* Adjust width as needed */
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  /* Customize thumb color */
+  background-color: rgb(146, 145, 145);
+  /* Rounded corners */
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  /* Customize track color */
+  background-color: rgb(243 244 246);
+}
+
+.react-datepicker__input-container {
+  display: none !important;
+}
+

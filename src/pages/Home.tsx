@@ -1,56 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { Header } from "../components/header";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { GraphSection } from "../components/graphSection";
+import { Header } from "../components/header";
 import { HeaderCards } from "../components/headerCards";
 import { ProfileBio } from "../components/profileBio";
 import { StatsTable } from "../components/statsTable";
+import { Spinner } from "../components/spinner";
 
-type Props = {};
-
-export const Home = (props: Props) => {
-  const [profileData, setProfileData] = useState({});
+export const Home = () => {
+  const [profileData, setProfileData] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProfileData = async () => {
       setLoading(true);
+
+      const headers = {
+        headers: { "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a",  },
+        withCredentials: true,
+      };
+
       try {
-        const response1 = await axios.get(
-          "https://saas.kyra.com/discovery/creators/5831967/base-data",
-          {
-            headers: {
-              "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a",
-            },
-          }
-        );
+        const API_BASE_URL = "/kyra-api/discovery/creators/5831967";
+        const axiosClient = axios.create({
+          baseURL: API_BASE_URL,
+          ...headers
+        })
+        const [baseDataRes, statsHistoryRes] = await Promise.all([
+          axiosClient.get(`/base-data`),
+          axiosClient.get(`/stats-history`),
+        ]);
 
-        const response2 = await axios.get(
-          "https://saas.kyra.com/discovery/creators/5831967/stats-history",
-          {
-            headers: {
-              "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a",
-            },
-          }
-        );
+        const baseData = baseDataRes.data.data;
+        const statsHistory = statsHistoryRes.data.data;
 
-        const base_data = response1.data.data;
-
-        // Convert language and region
+        // Language & Region Mapping
         const languageMap: Record<string, string> = { en: "English" };
         const regionMap: Record<string, string> = { US: "United States" };
 
-        if (base_data.tiktok) {
-          base_data.tiktok.language = languageMap[base_data.tiktok.language] || base_data.tiktok.language;
-          base_data.tiktok.region = regionMap[base_data.tiktok.region] || base_data.tiktok.region;
+        if (baseData.tiktok) {
+          baseData.tiktok.language =
+            languageMap[baseData.tiktok.language] || baseData.tiktok.language;
+          baseData.tiktok.region =
+            regionMap[baseData.tiktok.region] || baseData.tiktok.region;
         }
 
-        const stats_history = response2.data.data;
-        
-        setProfileData({ ...base_data, predictedFee:response1.data.predictedFee, predictedCpv:response1.data.predictedCpv , ...stats_history });
-        
-        setLoading(false);
+        setProfileData({
+          ...baseData,
+          predictedFee: baseDataRes.data.predictedFee,
+          predictedCpv: baseDataRes.data.predictedCpv,
+          ...statsHistory,
+        });
       } catch (error) {
-        console.log("ERROR while fetching data....", error);
+        console.error("Error while fetching profile data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProfileData();
@@ -59,13 +63,17 @@ export const Home = (props: Props) => {
   return (
     <div className="w-full h-full p-10">
       {loading ? (
-        <p className="text-white">Loading...</p>
+        <div className="w-full h-screen flex items-center justify-center">
+          <h1 className="text-xl mr-2">Loading</h1>
+          <Spinner />
+        </div>
       ) : (
         <div className="w-full flex flex-col gap-10">
           <Header profileData={profileData} />
           <HeaderCards profileData={profileData} />
           <ProfileBio profileData={profileData} />
           <StatsTable profileData={profileData} />
+          <GraphSection dataPoints={profileData?.historyPoints} />
         </div>
       )}
     </div>

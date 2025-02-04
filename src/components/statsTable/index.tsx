@@ -2,7 +2,7 @@ import React from "react";
 import { abbreviateNumber, Card } from "../card";
 import { Growth } from "../growth";
 
-type StatsTableProps = {};
+// type StatsTableProps = {};
 
 export const StatsTable: React.FC<any> = ({ profileData }) => {
   return (
