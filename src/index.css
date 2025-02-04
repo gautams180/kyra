@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#root{
+  width:100%;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -9,12 +13,17 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --rhm-rect: #2d2d2e;
+}
+
+#root {
+  width: 100%;
 }
 
 a {
@@ -32,6 +41,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: black;
 }
 
 h1 {
@@ -69,4 +79,31 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.scrollbarHide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  /* Adjust width as needed */
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  /* Customize thumb color */
+  background-color: rgb(146, 145, 145);
+  /* Rounded corners */
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  /* Customize track color */
+  background-color: rgb(243 244 246);
+}
+
+.react-datepicker__input-container {
+  display: none !important;
 }

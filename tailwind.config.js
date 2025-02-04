@@ -5,7 +5,21 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        roboto: ["Roboto Slab", "serif"],
+        dmSans: ["DM Sans","serif"],
+        kanit: ["kanit","serif"]
+      },
+      colors:{
+        "neon-green" : "#98c944",
+        "gray": "#343a40",
+        "gray-100": "#6c757d",
+      },
+      scrollbar: {
+        hide: 'hide'
+      }
+    },
   },
   plugins: [],
 }
