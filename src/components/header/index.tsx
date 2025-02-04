@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { socialHandlesData } from "../socialHandles/socialHandlesData";
-import { RiShareBoxFill } from "react-icons/ri";
 import { SocialHandles } from "../socialHandles";
 
-type profileDataProps = {};
+// type profileDataProps = {};
 
 export const SocialIcon = ({ icon }: { icon: string }) => (
   <div dangerouslySetInnerHTML={{ __html: icon }} />

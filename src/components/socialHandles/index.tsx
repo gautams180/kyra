@@ -2,9 +2,9 @@ import { RiShareBoxFill } from "react-icons/ri";
 import { SocialIcon } from "../header";
 import { socialHandlesData } from "./socialHandlesData";
 
-type Props = {};
+// type Props = {};
 
-export const SocialHandles = (props: Props) => {
+export const SocialHandles = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">
       {socialHandlesData.map((data, index) => (

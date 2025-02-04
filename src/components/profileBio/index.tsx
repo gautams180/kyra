@@ -2,7 +2,7 @@ import React from "react";
 import { socialHandlesData } from "../socialHandles/socialHandlesData";
 import { SocialIcon } from "../header";
 
-type ProfileBioProps = {};
+// type ProfileBioProps = {};
 
 export const ProfileBio: React.FC<any> = ({ profileData }) => {
   return (

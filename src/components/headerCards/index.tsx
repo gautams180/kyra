@@ -1,9 +1,8 @@
-import React from 'react'
-import { Card } from '../card'
-import { FaDollarSign } from "react-icons/fa6";
+import React from 'react';
+import { Card } from '../card';
 
 
-type HeaderCardsProps = {}
+// type HeaderCardsProps = {}
 
 export const HeaderCards: React.FC<any> = ({profileData}) => {
   return (
