@@ -29,7 +29,11 @@ export const Home: React.FC<HomeProps> = () => {
       setLoading(true);
 
       const headers = {
-        headers: { "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a" },
+        headers: {
+          "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a",
+          Origin: "https://kyra-lemon.vercel.app/", 
+          Referer: "https://kyra-lemon.vercel.app/",
+        },
         withCredentials: true,
       };
 
