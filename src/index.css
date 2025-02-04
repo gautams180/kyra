@@ -81,6 +81,10 @@ button:focus-visible {
   }
 }
 
+.scrollbarHide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
   /* Adjust width as needed */
@@ -103,4 +107,3 @@ button:focus-visible {
 .react-datepicker__input-container {
   display: none !important;
 }
-

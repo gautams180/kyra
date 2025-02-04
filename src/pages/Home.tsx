@@ -7,16 +7,29 @@ import { ProfileBio } from "../components/profileBio";
 import { StatsTable } from "../components/statsTable";
 import { Spinner } from "../components/spinner";
 
-export const Home = () => {
+import { TabSection } from "../components/tabSection";
+
+type HomeProps = {};
+
+const tabs = [
+  "Account Info",
+  "Media",
+  "Past briefs",
+  "Audience personas",
+  "Lookalikes",
+];
+
+export const Home: React.FC<HomeProps> = () => {
   const [profileData, setProfileData] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<string>("Account Info");
 
   useEffect(() => {
     const fetchProfileData = async () => {
       setLoading(true);
 
       const headers = {
-        headers: { "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a",  },
+        headers: { "x-kyra-swagger": "f583305f-9bc3-42dd-a520-8520483cff5a" },
         withCredentials: true,
       };
 
@@ -24,8 +37,8 @@ export const Home = () => {
         const API_BASE_URL = "/kyra-api/discovery/creators/5831967";
         const axiosClient = axios.create({
           baseURL: API_BASE_URL,
-          ...headers
-        })
+          ...headers,
+        });
         const [baseDataRes, statsHistoryRes] = await Promise.all([
           axiosClient.get(`/base-data`),
           axiosClient.get(`/stats-history`),
@@ -61,7 +74,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="w-full h-full p-10">
+    <div className="w-full h-full p-10 font-kanit">
       {loading ? (
         <div className="w-full h-screen flex items-center justify-center">
           <h1 className="text-xl mr-2">Loading</h1>
@@ -71,6 +84,13 @@ export const Home = () => {
         <div className="w-full flex flex-col gap-10">
           <Header profileData={profileData} />
           <HeaderCards profileData={profileData} />
+          <TabSection
+            tabs={tabs}
+            activeTab={activeTab}
+            onTabChange={(tab: string) => {
+              setActiveTab(tab);
+            }}
+          />
           <ProfileBio profileData={profileData} />
           <StatsTable profileData={profileData} />
           <GraphSection dataPoints={profileData?.historyPoints} />

@@ -7,13 +7,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        oswald: ["Oswald", "serif"],
+        roboto: ["Roboto Slab", "serif"],
+        dmSans: ["DM Sans","serif"],
+        kanit: ["kanit","serif"]
       },
       colors:{
         "neon-green" : "#98c944",
         "gray": "#343a40",
         "gray-100": "#6c757d",
       },
+      scrollbar: {
+        hide: 'hide'
+      }
     },
   },
   plugins: [],

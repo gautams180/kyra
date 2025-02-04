@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { SocialHandles } from "../socialHandles";
 
-// type profileDataProps = {};
-
 export const SocialIcon = ({ icon }: { icon: string }) => (
   <div dangerouslySetInnerHTML={{ __html: icon }} />
 );
@@ -20,7 +18,7 @@ export const Header: React.FC<any> = ({ profileData }) => {
 
       {/* name  */}
       <div className="flex gap-3 items-center">
-        <p className="text-3xl font-bold font-oswald tracking-wide leading-3">
+        <p className="text-3xl font-bold tracking-wide leading-3">
           {profileData?.tiktok?.nickname}
         </p>
 
