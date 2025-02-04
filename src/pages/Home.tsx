@@ -35,13 +35,10 @@ export const Home: React.FC<HomeProps> = () => {
 
       try {
         const API_BASE_URL = "/api/discovery/creators/5831967";
-        const axiosClient = axios.create({
-          baseURL: API_BASE_URL,
-          ...headers,
-        });
+
         const [baseDataRes, statsHistoryRes] = await Promise.all([
-          axiosClient.get(`/base-data`),
-          axiosClient.get(`/stats-history`),
+          axios.get(`${API_BASE_URL}/base-data`, headers),
+          axios.get(`${API_BASE_URL}/stats-history`, headers),
         ]);
 
         const baseData = baseDataRes.data.data;
