@@ -34,7 +34,7 @@ export const Home: React.FC<HomeProps> = () => {
       };
 
       try {
-        const API_BASE_URL = "/kyra-api/discovery/creators/5831967";
+        const API_BASE_URL = "/api/discovery/creators/5831967";
         const axiosClient = axios.create({
           baseURL: API_BASE_URL,
           ...headers,
